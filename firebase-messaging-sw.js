@@ -3,7 +3,7 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
 
 // Initialize the Firebase app in the service worker by passing the generated config
-var firebaseConfig = {
+var firebaseConfig =  {
     apiKey: "AIzaSyCud89dpES9zKc_3Zcz9EDG8dwsI-XblTE",
     authDomain: "develop-jz.firebaseapp.com",
     projectId: "develop-jz",
@@ -11,24 +11,25 @@ var firebaseConfig = {
     messagingSenderId: "722040087904",
     appId: "1:722040087904:web:a791336cf7cd40e53aaa05",
     measurementId: "G-4L1KL33EX5"
-};
+  };
 
 firebase.initializeApp(firebaseConfig);
 
 // Retrieve firebase messaging
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage(function (payload) {
-    console.log('Received background message ', payload);
+messaging.onBackgroundMessage(function(payload) {
+  console.log('Received background message ', payload);
 
-    const notificationTitle = payload.notification.title;
-    const notificationOptions = {
-        body: payload.notification.body,
-    };
+  const notificationTitle = payload.notification.title;
+  const notificationOptions = {
+    body: payload.notification.body,
+  };
 
-    self.registration.showNotification(notificationTitle,
-        notificationOptions);
+  self.registration.showNotification(notificationTitle,
+    notificationOptions);
 });
+
 
 
 console.log("navigator.serviceWorker", navigator.serviceWorker)
@@ -37,6 +38,27 @@ navigator.serviceWorker.register('/firebase-messaging-sw.js')
     .then(function (registration) {
         console.log("t1")
         firebase.messaging().useServiceWorker(registration)
+
+        const messaging = firebase.messaging();
+        console.log("t2")
+
+        messaging.onBackgroundMessage(function (payload) {
+            console.log('[firebase-messaging-sw.js] Received background message ', payload);
+            // Customize notification here
+            const notificationTitle = 'Background Message Title';
+            const notificationOptions = {
+                body: 'Background Message body.',
+                icon: '/firebase-logo.png'
+            };
+
+            self.registration.showNotification(notificationTitle,
+                notificationOptions);
+        });
+        console.log("t3")
+
+        this.addEventListener("push", t => {
+            console.log("push", t)
+        })
 
         console.log('Registration successful, scope is:', registration.scope);
     }).catch(function (err) {

@@ -2,6 +2,7 @@
 importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
 
+// Initialize the Firebase app in the service worker by passing the generated config
 var firebaseConfig = {
     apiKey: "AIzaSyCud89dpES9zKc_3Zcz9EDG8dwsI-XblTE",
     authDomain: "develop-jz.firebaseapp.com",
@@ -14,6 +15,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+// Retrieve firebase messaging
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function (payload) {
@@ -33,7 +35,9 @@ console.log("navigator.serviceWorker", navigator.serviceWorker)
 
 navigator.serviceWorker.register('/firebase-messaging-sw.js')
     .then(function (registration) {
+        console.log("t1")
         firebase.messaging().useServiceWorker(registration)
+
         console.log('Registration successful, scope is:', registration.scope);
     }).catch(function (err) {
         console.log('Service worker registration failed, error:', err);

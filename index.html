@@ -2,353 +2,73 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Techro is a modern and fully responsive Template by WebThemez.">
-    <meta name="author" content="webThemez.com">
-    <title>Techro - Flat Free Responsive bootstrap template</title>
-    <link rel="favicon" href="assets/images/favicon.png">
-    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <!-- Custom styles for our template -->
-    <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="assets/css/da-slider.css" />
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-	<script src="assets/js/html5shiv.js"></script>
-	<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <div class="optinly-embed-popup-3027592a-695f-43fe-9525-fc23c242d393"></div>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+    import { onMessage, getToken, getMessaging } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-messaging.js";
+    import { onBackgroundMessage } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-messaging-sw.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Button for smallest screens -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
-                        class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/images/logo.png" alt="Techro HTML5 template"></a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                            <li><a href="#">Dummy Link1</a></li>
-                            <li><a href="#">Dummy Link2</a></li>
-                            <li><a href="#">Dummy Link3</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="trigger-class" target="_blank" href="/sample.html">Contact</a>
-                    </li>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCud89dpES9zKc_3Zcz9EDG8dwsI-XblTE",
+      authDomain: "develop-jz.firebaseapp.com",
+      projectId: "develop-jz",
+      storageBucket: "develop-jz.appspot.com",
+      messagingSenderId: "722040087904",
+      appId: "1:722040087904:web:a791336cf7cd40e53aaa05",
+      measurementId: "G-4L1KL33EX5"
+    };
 
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const messaging = getMessaging();
 
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </div>
-    <!-- /.navbar -->
+    //This code recieve message from server /your app and print message to console if same tab is opened as of project in browser 
 
-    <!-- Header -->
-    <header id="head">
-        <div class="container">
-            <div class="banner-content">
-                <div id="da-slider" class="da-slider">
-                    <div class="da-slide">
-                        <h2>Responsive Website</h2>
-                        <p>Amazing free responsive website for free, enjoy!!!</p>
-                        <div class="da-img"></div>
-                    </div>
-                    <div class="da-slide">
-                        <h2>Bootstrap</h2>
-                        <p>Bootstrap is a powerful mobile first front-end framework..</p>
-                        <div class="da-img"></div>
-                    </div>
-                    <div class="da-slide">
-                        <h2>HTML5/CSS3</h2>
-                        <p>HTML5 is a markup language used for structuring and presenting Web.</p>
-                        <div class="da-img"></div>
-                    </div>
-                    <div class="da-slide">
-                        <h2>JavaScript/jQuery</h2>
-                        <p>jQuery: Write Less, Do More...</p>
-                        <div class="da-img"></div>
-                    </div>
-                    <nav class="da-arrows">
-                        <span class="da-arrows-prev"></span>
-                        <span class="da-arrows-next"></span>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- /Header -->
+    onMessage(messaging, (payload) => {
+      console.log('Message received. -------------');
+    });
 
-    <!-- container -->
-    <div class="container">
-        <div class="heading">
-            <!-- Heading -->
-            <h2>Our Company</h2>
-            <br />
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <img src="assets/images/1.jpg" alt="" class="img-responsive img-thumbnail">
-            </div>
-            <div class="col-md-8">
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-                    sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-                    est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                    modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
-                <blockquote class="blockquote-1">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Anim
-                        pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid</p>
-                    <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-                </blockquote>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class='col-md-12 text-center'>
-                <h3>Client Testimonial</h3>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col-md-12'>
-                <div class="carousel slide" data-ride="carousel" id="quote-carousel">
-                    <!-- Bottom Carousel Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#quote-carousel" data-slide-to="1"></li>
-                        <li data-target="#quote-carousel" data-slide-to="2"></li>
-                    </ol>
+    //Custom function made to run firebase service 
+    getStartToken();
 
-                    <!-- Carousel Slides / Quotes -->
-                    <div class="carousel-inner">
-                        <!-- Quote 1 -->
-                        <div class="item active">
-                            <blockquote>
-                                <div class="row">
-                                    <div class="col-sm-3 text-center">
-                                        <img class="img-circle" src="assets/images/person_1.png"
-                                            style="width: 100px; height: 100px;">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur,
-                                            adipisci velit!</p>
-                                        <small>Someone famous</small>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <!-- Quote 2 -->
-                        <div class="item">
-                            <blockquote>
-                                <div class="row">
-                                    <div class="col-sm-3 text-center">
-                                        <img class="img-circle" src="assets/images/person_2.png"
-                                            style="width: 100px; height: 100px;">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam auctor nec
-                                            lacus ut tempor. Mauris.</p>
-                                        <small>Someone famous</small>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <!-- Quote 3 -->
-                        <div class="item">
-                            <blockquote>
-                                <div class="row">
-                                    <div class="col-sm-3 text-center">
-                                        <img class="img-circle" src="assets/images/person_3.png"
-                                            style="width: 100px; height: 100px;">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum elit in
-                                            arcu blandit, eget pretium nisl accumsan. Sed ultricies commodo tortor, eu
-                                            pretium mauris.</p>
-                                        <small>Someone famous</small>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
+    function getStartToken() {
+      getToken(messaging, { vapidKey: "BKp-ht5oTPd6op2Uvhp7MLNaIWxY9uqQrvzJM-oh4GDrnp4eyas9RzGDZO4wNBG9b9YZvR3NE2-4DINnDmju6_E" }).then((currentToken) => {
+        console.log({currentToken})
+        if (currentToken) {
+         
+        }
+        else {
+          RequestPermission();
+        }
+      }).catch((err) => {
+        console.log(err)
+      });
+    }
+    function RequestPermission() {
+      messaging.requestPermission()
+        .then(function (permission) {
+          if (permission === 'granted') {
+            console.log("have Permission");
+            getStartToken();
+          }
+          else { console.log("Permission Denied"); }
+        }).catch(function (err) {
+          console.log(err);
+        })
+    }
 
-                    <!-- Carousel Buttons Next/Prev -->
-                    <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i
-                            class="fa fa-chevron-left"></i></a>
-                    <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i
-                            class="fa fa-chevron-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Highlights - jumbotron -->
-    <div class="jumbotron" style="padding:12px">
-        <button id="trigger-id">
-            Id Trigger
-        </button>
-
-        <button class="cat-item cat-item-22 cat-parent has-child">
-            Class Trigger
-        </button>
-        <div class="container">
-
-            <h3 class="text-center">Our core Services</h3>
-
-            <div class="row">
-                <div class="col-md-3 col-sm-6 highlight">
-                    <div class="hbox">
-                        <div class="h-caption">
-                            <h4><i class="fa fa-arrows fa-2x circle"></i>Responsive Design</h4>
-                        </div>
-                        <div class="h-body text-center">
-                            <p>Nullam ac rhoncus sapien, non gravida purus. Alinon elit imperdiet congue. Integer
-                                ultricies sed elit imperdiet congue. Integer ultricies sed ligula eget tempus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 highlight">
-                    <div class="hbox">
-                        <div class="h-caption">
-                            <h4><i class="fa fa-css3 fa-2x circle"></i>HTML5/CSS3</h4>
-                        </div>
-                        <div class="h-body text-center">
-                            <p>Nullam ac rhoncus sapien, non gravida purus. Alinon elit imperdiet congue. Integer
-                                ultricies sed elit imperdiet congue. Integer ultricies sed ligula eget tempus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 highlight">
-                    <div class="hbox">
-                        <div class="h-caption">
-                            <h4><i class="fa fa-lightbulb-o fa-2x circle"></i>JavaScript jQuery</h4>
-                        </div>
-                        <div class="h-body text-center">
-                            <p>Nullam ac rhoncus sapien, non gravida purus. Alinon elit imperdiet congue. Integer
-                                ultricies sed elit imperdiet congue. Integer ultricies sed ligula eget tempus.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6 highlight">
-                    <div class="optinly-embed-popup-0c52fd46-bb07-4aa8-86bf-049abaa90271"></div>
-                </div>
-            </div>
-
-            <!-- /row  -->
-
-        </div>
-
-
-    </div>
-    <!-- /Highlights -->
-
-
-    <footer id="footer">
-
-
-        <div class="footer1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 panel">
-                        <h3 class="panel-title">About Techro</h3>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor amet, consectetur adipiscing elit. Aenean leo lectus sollicitudin
-                                convallis eget libero. Aliquam laoreet tellus ut libero semper, egestas velit malesuada.
-                                Sed non risus eget dolor amet vestibulum ullamcorper. Integer feugiat molestie.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 panel contact">
-                        <h3 class="panel-title">Contact Info</h4>
-                            <div class="panel-body">
-                                <p>Lorem ipsum dolor amet, consectetur adipiscing ipsum dolor.</p>
-                                <ul>
-                                    <li><i class="fa fa-phone"></i>1-123-345-6789</li>
-                                    <li><a href="#"><i class="fa fa-envelope-o"></i>contact@webthemez.com</a></li>
-                                    <li><i class="fa fa-flag"></i>123 Smith Drive, Baltimore, MD 21212</li>
-                                </ul>
-                            </div>
-                    </div>
-
-                    <div class="col-md-3 panel">
-                        <h3 class="panel-title">Follow me</h3>
-                        <div class="panel-body">
-                            <p class="follow-me-icons">
-                                <a href=""><i class="fa fa-twitter fa-2"></i></a>
-                                <a href=""><i class="fa fa-dribbble fa-2"></i></a>
-                                <a href=""><i class="fa fa-github fa-2"></i></a>
-                                <a href=""><i class="fa fa-facebook fa-2"></i></a>
-                                <a href=""><i class="fa fa-youtube fa-2"></i></a>
-                                <a href=""><i class="fa fa-pinterest fa-2"></i></a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /row of panels -->
-            </div>
-        </div>
-
-        <div class="footer2">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="simplenav">
-                                <a href="techro/index.html">Home</a> |
-                                <a href="techro/about.html">About</a> |
-                                <a href="techro/services.html">Services</a> |
-                                <a href="techro/portfolio.html">Portfolio</a> |
-                                <a target="_blank" href="/sample.html">Contact</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 panel">
-                        <div class="panel-body">
-                            <p class="text-right">
-                                Copyright &copy; 2014. Template by <a href="http://webthemez.com/"
-                                    rel="develop">WebThemez.com</a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /row of panels -->
-            </div>
-        </div>
-        <div class="optinly-embed-popup-74bf4f1f-c468-46dc-ac13-c51ac1ffe763"></div>
-    </footer>
-
-    <!-- Beta -->
-    <!-- <script id="optinly_script" async="true" data-app_id='93eee487-ff43-4362-a108-5a8a5f84fdff' src='https://cdn.dev.optinly.gozen.io/v1/optinly.js'> </script> -->
-
-    <!-- Local -->
-    <script id="optinly_script" async="true" data-app_id='c1e234d3-56e2-42a4-b694-efb33d043d98'   src='https://cdn.dev.optinly.gozen.io/v1/optinly.js'> </script>
-
-    <!-- Live -->
-    <!-- <script id="optinly_script" async="true" data-app_id='e1d0eab6-9906-41e5-9843-223116c0e925' src='https://cdn.optinly.net/v1/optinly.js'> </script> -->
+  </script>
 
 </body>
 

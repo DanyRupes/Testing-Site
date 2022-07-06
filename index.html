@@ -53,7 +53,7 @@
 
       if (title) document.querySelector(".gz-opt-push-title").textContent = title;
       if (body) document.querySelector(".gz-opt-push-desc").textContent = body;
-      if (icon) document.querySelector("#gz-opt-push-icon").setAttribute('src', icon);
+      document.querySelector("#gz-opt-push-icon").setAttribute('src', icon || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIePcbc5rf0MMFQ0ZL6BDW5Je0ykpagRcDhg&usqp=CAU");
 
       if (click_url) toastCont.addEventListener('click', function () { window.open(click_url) })
       let timer1, timer2;
@@ -149,7 +149,7 @@
       align-items: center;
     }
 
-    .toast-content .check {
+    .toast-content .img-cont {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -243,7 +243,7 @@
 
     #gz-opt-push-icon {
       width: 54px;
-      height: 56px;
+      height: 54px;
       border-radius: 15%;
     }
   </style>
@@ -251,7 +251,7 @@
   <div class="toast">
 
     <div class="toast-content">
-      <div class=" check">
+      <div class=" img-cont">
         <img src="" id="gz-opt-push-icon" />
       </div>
 

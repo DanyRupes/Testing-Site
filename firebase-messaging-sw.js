@@ -24,6 +24,7 @@ messaging.onBackgroundMessage(function (payload) {
     const notificationTitle = payload.notification.title;
     const notificationOptions = {
         body: payload.notification.body,
+        payload
     };
 
     self.registration.showNotification(notificationTitle,
@@ -32,15 +33,14 @@ messaging.onBackgroundMessage(function (payload) {
 
 
 self.addEventListener('notificationclick', (event) => {
-    console.log("notificationclick", event)
 
-    event.notification.close()
+    event.notification.close();
+    
+    console.log("event", event)
     console.log("event.notification.data", event.notification.data)
     
-    if (!event.notification.data.pathname) return
-
-    const pathname = event.notification.data.pathname
-    const url = new URL(pathname, self.location.origin).href
+    const url = event.notification.data.url
+    if (!url) return
   
     event.waitUntil(
       self.clients
@@ -49,7 +49,7 @@ self.addEventListener('notificationclick', (event) => {
           const hadWindowToFocus = clientsArr.some((windowClient) =>
             windowClient.url === url ? (windowClient.focus(), true) : false
           )
-  
+  console.log({hadWindowToFocus})
           if (!hadWindowToFocus)
             self.clients
               .openWindow(url)

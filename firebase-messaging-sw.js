@@ -26,18 +26,19 @@ messaging.onBackgroundMessage(function (payload) {
     const notificationOptions = {
         body: payload.notification.body,
         icon: "https://picsum.photos/id/237/200/300",
-        actions: [
-            {
-                action: 'view-ticket',
-                title: 'View Ticket',
-                icon: '/ui/img/icons/ticket-icon.png',
-                click_url: "https://gozen.io"
-            }
-        ],
+        clickUrl:  payload.data.click_url,
+        // actions: [
+        //     {
+        //         action: 'view-ticket',
+        //         title: 'View Ticket',
+        //         icon: 'https://picsum.photos/id/237/200/300',
+        //         click_url: "https://gozen.io"
+        //     }
+        // ],
     };
 
     clickUrl = payload.data.click_url;
-    console.log("clickUrl 1", clickUrl, )
+
     self.registration.showNotification(notificationTitle,
         notificationOptions);
 });
@@ -47,17 +48,18 @@ self.addEventListener('notificationclick', (event) => {
 
     event.notification.close();
 
-    console.log("event", event)
-    if (!event.action) {
+    console.log("event", event.notification)
+
+    if (!event.notification.clickUrl) {
         return;
-    }
+    }   
 
     event.waitUntil(self.clients
         .matchAll({ type: 'window', includeUncontrolled: true })
         .then((clientsArr) => {
             console.log("click")
             self.clients
-                .openWindow(url)
+                .openWindow(clickUrl)
                 .then((windowClient) =>
                     windowClient ? windowClient.focus() : null
                 )

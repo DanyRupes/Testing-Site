@@ -39,7 +39,8 @@
 
     const onMsgReceived = function (payload = {}) {
       const toast = document.querySelector(".toast");
-
+      const toastCont = document.querySelector(".toast-content");
+      
       const closeIcon = document.querySelector(".close"),
         progress = document.querySelector(".progress");
       let data = typeof payload.data === 'object' ? payload.data : {};
@@ -48,13 +49,13 @@
       const click_url = data["click_url"];
       const title = notification["title"];
       const body = notification["body"];
-      const icon = notification["icon"];
+      const icon = notification["image"];
 
       if (title) document.querySelector(".gz-opt-push-title").textContent = title;
-      if (body) document.querySelector(".gz-opt-push-title").textContent = body;
+      if (body) document.querySelector(".gz-opt-push-desc").textContent = body;
       if (icon) document.querySelector("#gz-opt-push-icon").setAttribute('src', icon);
 
-      if (click_url) toast.addEventListener('click', function () { window.open(click_url) })
+      if (click_url) toastCont.addEventListener('click', function () { window.open(click_url) })
       let timer1, timer2;
 
       toast.classList.add("active");
@@ -270,8 +271,6 @@
 
     <!-- <div class="progress active"></div> -->
   </div>
-
-  <button>Show Toast</button>
 
 </body>
 
